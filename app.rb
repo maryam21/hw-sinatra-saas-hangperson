@@ -42,9 +42,13 @@ class HangpersonApp < Sinatra::Base
     if letter != nil 
       @game.guess(letter)
     end### YOUR CODE HERE ###
+   
+    if @game.guess(letter) == false
+        flash[:message] = 'You have already used that letter'
+      end
     redirect '/show'
   end
-  
+ 
   # Everytime a guess is made, we should eventually end up at this route.
   # Use existing methods in HangpersonGame to check if player has
   # won, lost, or neither, and take the appropriate action.
